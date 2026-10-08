@@ -11,6 +11,12 @@ app.get('/', (req, res) => {
     res.send('Practice Server Is Running Properly!');
 });
 
+// routes imports
+import mobileRoutes from './routes/mobile.routes.js';
+
+// routes
+app.use('/api', mobileRoutes);
+
 export default app;
 
 // app.get('/', (req, res) => { ... })
