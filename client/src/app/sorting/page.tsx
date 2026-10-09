@@ -1,15 +1,10 @@
-import { getMobilesData } from '@/services/mobiles.services';
-import React from 'react';
+import { getMobilesData } from "@/services/mobiles.services";
+import SortingView from "@/components/sorting/SortingView";
 
 const SortingPage = async () => {
-    const mobiles = await getMobilesData();
-    console.log(mobiles, 'mobiles');
+    const { mobiles } = await getMobilesData();
 
-    return (
-        <div>
-            this is sorting page.
-        </div>
-    );
+    return <SortingView mobiles={mobiles} />;
 };
 
 export default SortingPage;
