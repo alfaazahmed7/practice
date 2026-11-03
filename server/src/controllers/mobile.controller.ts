@@ -6,13 +6,26 @@ export const getMobiles = async (
     res: Response
 ): Promise<void> => {
     try {
-        const mobiles = await Mobile.find();
+        const { search } = req.query;
+
+        // query object
+        const query: Record<string, unknown> = {};
+
+        // search 
+        if (search) {
+            query.$or = [
+                { brand: { $regex: search, $options: 'i' } },
+                { processor: { $regex: search, $options: 'i' } },
+                { display: { $regex: search, $options: 'i' } }
+            ]
+        }
+
+        const mobiles = await Mobile.find(query);
 
         if (!mobiles) {
             res.status(404).json({
                 message: 'No mobiles data has been found'
             });
-            return;
         }
 
         res.status(200).json({

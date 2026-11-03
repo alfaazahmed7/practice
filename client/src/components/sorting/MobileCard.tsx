@@ -1,6 +1,7 @@
 "use client";
 
 import { Mobile } from "@/types/Mobile";
+import { FaStar } from "react-icons/fa";
 
 type MobileCardProps = {
     mobile: Mobile;
@@ -43,9 +44,7 @@ export default function MobileCard({ mobile }: MobileCardProps) {
                     {brand}
                 </span>
                 <span className="inline-flex items-center gap-1 rounded-full bg-amber-400/10 px-2.5 py-1 text-xs font-semibold text-amber-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
-                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                    </svg>
+                    <FaStar className="h-3.5 w-3.5" />
                     {rating}
                 </span>
             </div>

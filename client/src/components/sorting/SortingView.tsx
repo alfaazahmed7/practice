@@ -10,6 +10,7 @@ type SortingViewProps = {
 };
 
 export default function SortingView({ mobiles }: SortingViewProps) {
+
     return (
         <main className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-900 to-fuchsia-950 px-6 py-12 sm:px-10 lg:px-16">
             <header className="mx-auto mb-10 max-w-7xl">
@@ -22,7 +23,7 @@ export default function SortingView({ mobiles }: SortingViewProps) {
             </header>
 
             <div className="mx-auto max-w-7xl space-y-8">
-                <MobileToolbar />
+                <MobileToolbar  />
 
                 <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {mobiles.map((mobile) => (

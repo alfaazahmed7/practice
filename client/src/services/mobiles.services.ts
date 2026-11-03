@@ -8,13 +8,13 @@ interface GetMobilesResponse {
     mobiles: Mobile[]
 }
 
-export const getMobilesData = async (): Promise<GetMobilesResponse> => {
+export const getMobilesData = async (queryString: string): Promise<GetMobilesResponse> => {
     if (!baseUrl) {
         throw new Error('NEXT_SERVER_URL is not configured!');
     }
 
     try {
-        const res = await fetch(`${baseUrl}/api/mobiles`);
+        const res = await fetch(`${baseUrl}/api/mobiles?${queryString}`);
 
         if (!res.ok) {
             throw new Error(`Request failed with status ${res.status}`);

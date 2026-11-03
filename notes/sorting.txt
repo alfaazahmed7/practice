@@ -1,0 +1,94 @@
+1. useSearchParams()
+useSearchParams() is a Next.js navigation hook that allows you to read query parameters from the URL.
+
+example:
+/products?category=mobile&sort=price
+
+"use client";
+
+import { useSearchParams } from "next/navigation";
+
+export default function Products() {
+  const searchParams = useSearchParams();
+
+  const category = searchParams.get("category");
+  const sort = searchParams.get("sort");
+
+  return (
+    <div>
+      <p>Category: {category}</p>
+      <p>Sort: {sort}</p>
+    </div>
+  );
+}
+
+2. URLSearchParams()
+URLSearchParams is a built-in JavaScript Web API used to read, create, update, and manipulate query parameters in a URL.
+
+Common methods:
+.get("key")	-> Gets a parameter value
+.set("key", "value") ->	Adds or updates a parameter
+.append("key", "value") -> 	Adds another value
+.delete("key") ->	Removes a parameter
+.has("key") ->	Checks if a parameter exists
+.toString() ->	Converts parameters into a query string
+
+example:
+const search = "samsung";
+
+const params = new URLSearchParams();
+
+params.set("search", search);
+params.set("page", "1");
+
+const url = `/mobiles?${params.toString()}`;
+
+console.log(url);
+
+/mobiles?search=samsung&page=1
+
+3. MongoDB -> case insensitive search
+use $options: 'i' to ignore uppercase or lowercase differences.
+
+example:
+db.user.find({
+    name: {$regex: 'riya', $options: 'i'}
+});
+
+4. searchParams()
+In Next.js, searchParams is used to access query parameters from a URL.
+Query parameters are the key-value pairs that appear after ? in a URL.
+
+example:
+type Props = {
+  searchParams: Promise<{
+    search?: string;
+    page?: string;
+  }>;
+};
+
+export default async function MobilesPage({ searchParams }: Props) {
+  const { search, page } = await searchParams;
+
+  console.log(search); // samsung
+  console.log(page);   // 2
+
+  return <div>Mobiles Page</div>;
+}
+
+5. MongoDB -> $regex
+In MongoDB, $regex is used to search for documents where a string field matches a particular pattern.
+It's commonly used for search functionality.
+
+example:
+{
+  name: "Samsung Galaxy S25",
+  brand: "Samsung"
+}
+
+db.Mobiles.find({
+  name: {
+    $regex: "samsung",
+    $options: "i" (case-insensitive)
+  }
+});
