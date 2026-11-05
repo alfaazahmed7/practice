@@ -92,3 +92,50 @@ db.Mobiles.find({
     $options: "i" (case-insensitive)
   }
 });
+
+6. TypeScript -> void
+// void means -> "This function doesn't intentionally return a value."
+
+7. MongoDB -> sort()
+
+sort() arranges documents based on one or more fields.
+
+BASIC SYNTAX
+
+db.collection.find().sort({ field: 1 });
+
+1  = Ascending order (smallest to largest, A to Z)
+-1 = Descending order (largest to smallest, Z to A)
+
+SORT BY A SINGLE FIELD
+
+db.Mobiles.find().sort({ price: 1 });
+db.Mobiles.find().sort({ price: -1 });
+db.Mobiles.find().sort({ name: 1 });
+
+SORT BY MULTIPLE FIELDS
+
+db.Mobiles.find().sort({
+  brand: 1,
+  price: -1
+});
+
+MongoDB sorts by the first field.
+The next field is used when documents have equal values
+in the previous field.
+
+5. COMBINE SORT WITH LIMIT
+
+db.Mobiles.find()
+  .sort({ price: -1 })
+  .limit(5);
+
+KEY IDEA
+
+sort({ field: 1 })  -> Ascending
+sort({ field: -1 }) -> Descending
+
+Multiple fields: MongoDB sorts by the first field,
+then uses subsequent fields to break ties.
+
+limit() controls how many documents are returned.

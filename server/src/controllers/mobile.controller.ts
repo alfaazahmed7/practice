@@ -6,7 +6,7 @@ export const getMobiles = async (
     res: Response
 ): Promise<void> => {
     try {
-        const { search } = req.query;
+        const { search, sort } = req.query;
 
         // query object
         const query: Record<string, unknown> = {};
@@ -20,7 +20,24 @@ export const getMobiles = async (
             ]
         }
 
-        const mobiles = await Mobile.find(query);
+        // sort
+        let sortOption = {};
+
+        if (sort === 'price-asc') {
+            sortOption = { price: 1 };
+        }
+        else if (sort === 'price-desc') {
+            sortOption = { price: -1 };
+        }
+        else if (sort === 'rating-asc') {
+            sortOption = { rating: -1 };
+        }
+        else if (sort === 'newest') {
+            sortOption = { releaseYear: -1 }
+        }
+
+        const mobiles = await Mobile.find(query)
+            .sort(sortOption);
 
         if (!mobiles) {
             res.status(404).json({
@@ -42,5 +59,3 @@ export const getMobiles = async (
         });
     }
 }
-
-// void means -> "This function doesn't intentionally return a value."
